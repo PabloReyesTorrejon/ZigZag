@@ -13,6 +13,8 @@ public class JugadorBola : MonoBehaviour
     public float velocidad;
     public GameObject Estrella;
     public Text texto;
+    public float coordenadaZonaMuerte = -10f;
+    public GameOverScreen gameOverScreen;
     //private
     private Vector3 offset;
     private float Valx, Valz;
@@ -34,6 +36,10 @@ public class JugadorBola : MonoBehaviour
             CambiarDireccion();
         }
         transform.Translate(DireccionActual * velocidad * Time.deltaTime);
+
+        if(transform.position.y < coordenadaZonaMuerte){
+            GameOver();
+        }
     }
 
     void CrearSueloInicial(){
@@ -94,5 +100,9 @@ public class JugadorBola : MonoBehaviour
             estrellas++;
             texto.text = "Puntuacion: " + estrellas;
         }
+    }
+
+    public void GameOver(){
+        gameOverScreen.Setup(estrellas);
     }
 }
