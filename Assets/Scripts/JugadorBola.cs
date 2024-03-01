@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class JugadorBola : MonoBehaviour
 {
@@ -20,12 +21,15 @@ public class JugadorBola : MonoBehaviour
     private float Valx, Valz;
     private Vector3 DireccionActual;
     private int estrellas = 0;
+    private Button boton;
 
     void Start()
     {
         offset = camara.transform.position;  
         CrearSueloInicial(); 
         DireccionActual = Vector3.forward;
+        boton = GameObject.FindWithTag("botonsalir").GetComponent<Button>();
+        boton.onClick.AddListener(Terminar);
     }
 
     // Update is called once per frame
@@ -100,6 +104,10 @@ public class JugadorBola : MonoBehaviour
             estrellas++;
             texto.text = "Puntuacion: " + estrellas;
         }
+    }
+
+    void Terminar(){
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void GameOver(){
