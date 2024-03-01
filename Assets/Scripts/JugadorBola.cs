@@ -20,7 +20,7 @@ public class JugadorBola : MonoBehaviour
     private float Valx, Valz;
     private Vector3 DireccionActual;
     private int estrellas = 0;
-
+    
     void Start()
     {
         offset = camara.transform.position;  
@@ -95,12 +95,17 @@ public class JugadorBola : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("premio")){
-            Destroy(other.gameObject);
+            ParticleSystem particulas = other.gameObject.GetComponent<ParticleSystem>();
+            if (particulas != null) {
+                particulas.Play();
+            }
+            Destroy(other.gameObject, particulas.main.duration);
             Debug.Log("Ha tocado una estrella");
             estrellas++;
             texto.text = "Puntuacion: " + estrellas;
         }
     }
+
 
     public void GameOver(){
         gameOverScreen.Setup(estrellas);
