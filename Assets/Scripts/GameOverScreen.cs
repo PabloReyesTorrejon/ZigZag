@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-     public Text pointsText;
-     public void Setup(int score){
+    public Text pointsText;
+    public Text timeText;
+
+    public void Setup(int score, float time){
         gameObject.SetActive(true);
         pointsText.text = score.ToString() + " PUNTOS";
-   }
+        timeText.text = "TIEMPO: " + time.ToString("F2") + "s";
+    }
    public void RestartButton(){
        SceneManager.LoadScene("Nivel1");
    }

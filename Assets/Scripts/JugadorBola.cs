@@ -15,6 +15,7 @@ public class JugadorBola : MonoBehaviour
     public Text texto;
     public float coordenadaZonaMuerte = -10f;
     public GameOverScreen gameOverScreen;
+    public timer timer;
     //private
     private Vector3 offset;
     private float Valx, Valz;
@@ -108,6 +109,7 @@ public class JugadorBola : MonoBehaviour
 
 
     public void GameOver(){
-        gameOverScreen.Setup(estrellas);
+        timer.StopTimer();
+        gameOverScreen.Setup(estrellas, timer.timeRemaining);
     }
 }
