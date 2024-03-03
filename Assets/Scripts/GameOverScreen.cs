@@ -11,7 +11,7 @@ public class GameOverScreen : MonoBehaviour
 
     public void Setup(int score, float time){
         gameObject.SetActive(true);
-        pointsText.text = score.ToString() + " PUNTOS";
+        pointsText.text = "PUNTUACION: " + score.ToString() + " PUNTOS";
         timeText.text = "TIEMPO: " + time.ToString("F2") + "s";
     }
    public void RestartButton(){
